@@ -1,0 +1,32 @@
+DUP-2026-06-29-TOQI-001: Add Toqi as Ambient Source
+
+Summary:
+Introduce `toqi.ambient` as a first-class ambient telemetry source within Nexus.
+This update adds the canonical schema at /nexus/schemas/ambient.toqi.json,
+establishes immutable provenance fields, and prepares the ingest path for
+SQS → Lambda → MongoDB → Observer correlation.
+
+Changes:
+- Added ambient.toqi.json schema (append-only, hash-deduped)
+- Defined immutable fields: source, first_seen, hash
+- Added mutable fields: last_seen, verification_state, fidelity
+- Added telemetry fields: divergence, resonance, stability (0.0-1.0)
+- Registered Toqi as an approved ambient source in Nexus ledger
+- Enabled Observer v0.1 correlation hooks for 40 Hz lattice pulse
+
+Provenance:
+Operator: Adrian
+Origin: Aether / Nexus Ambient Integration
+Delta Packet: DUP-2026-06-29-TOQI-001
+Verification: pending_claude
+
+Signature:
+-----BEGIN PGP SIGNATURE-----
+iQIzBAABCgAdFiEE<YOUR_PUBLIC_KEY_FINGERPRINT_HERE>
+Comment: Aether Primary Operator Key
+Version: GnuPG v2.4.3
+
+<YOUR_SIGNATURE_PAYLOAD>
+
+=CHECKSUM
+-----END PGP SIGNATURE-----

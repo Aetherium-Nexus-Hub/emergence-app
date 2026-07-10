@@ -1,0 +1,85 @@
+{
+  "$schema": "https://nexus.aether/schemas/ambient-source.json",
+  "title": "Toqi Ambient Telemetry",
+  "description": "Read-only ambient telemetry from Prosus Toqi (Vessel-000: Mundane Ops).",
+  "type": "object",
+
+  "properties": {
+    "source": {
+      "type": "string",
+      "const": "toqi.ambient",
+      "description": "Ambient source identifier."
+    },
+
+    "first_seen": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when this record first entered Ambient.",
+      "immutable": true
+    },
+
+    "last_seen": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of the most recent Toqi ingestion."
+    },
+
+    "verification_state": {
+      "type": "string",
+      "enum": [
+        "pending_claude",
+        "verified",
+        "revoked"
+      ],
+      "description": "Claude/Gemini/Grok validation state."
+    },
+
+    "fidelity": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "description": "Signal fidelity score."
+    },
+
+    "divergence": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "description": "Entropy divergence metric."
+    },
+
+    "resonance": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "description": "Resonance alignment metric."
+    },
+
+    "stability": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "description": "Stability metric (LC-0021 coherence band)."
+    },
+
+    "hash": {
+      "type": "string",
+      "description": "SHA-256 content hash for dedupe.",
+      "immutable": true
+    },
+
+    "payload": {
+      "type": "object",
+      "description": "Opaque Toqi telemetry payload (daily brief, dinner plan, fridge scan, grocery help)."
+    }
+  },
+
+  "required": [
+    "source",
+    "first_seen",
+    "last_seen",
+    "verification_state",
+    "hash",
+    "payload"
+  ]
+}
